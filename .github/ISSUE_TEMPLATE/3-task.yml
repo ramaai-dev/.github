@@ -1,0 +1,66 @@
+name: Task
+description: Chore, refactor, docs, test, infra, dependency, or hardening work — no new user-visible capability.
+type: Task
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Write for a collaborator reading this cold in six months.
+
+        - **Impersonal.** No "you" / "I", no names or initials — refer to roles (*maintainer*, *operator*, *reviewer*).
+        - **No site network facts, no PHI, no credentials.** A hospital's codename is fine here; its AE titles, addresses, ports, and hostnames are not — use `PACS_AET`, `192.0.2.10`.
+        - **Short.** Link the design doc or ADR instead of restating it.
+
+        For a security finding, add the `security` label after filing — and see [SECURITY.md](https://github.com/ramaai-dev/.github/blob/main/.github/SECURITY.md) first if it is exploitable.
+        Full rules: [CONTRIBUTING → Writing issues and PRs](https://github.com/ramaai-dev/.github/blob/main/.github/CONTRIBUTING.md#writing-issues-and-prs).
+
+        เขียนภาษาไทยปน English technical terms ได้เลย — Thai with English technical terms is welcome.
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What is true when this is done, and why it is worth doing now.
+      placeholder: >-
+        The application connects to its database as a least-privilege user instead of unauthenticated localhost,
+        closing a control named in the security design doc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Only what a newcomer needs that the linked docs do not already say.
+
+  - type: textarea
+    id: work
+    attributes:
+      label: Work
+      description: The steps, as a checklist. Cite code as `path/to/file.ext:123`.
+      value: |
+        - [ ]
+
+  - type: textarea
+    id: done_when
+    attributes:
+      label: Done when
+      description: Observable criteria, and which gate proves each (dry gate, live gate, or a manual check).
+      value: |
+        - [ ]
+    validations:
+      required: false
+
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of scope
+      description: What this deliberately leaves alone. Link the issue that covers it, if one exists.
+
+  - type: checkboxes
+    id: redaction
+    attributes:
+      label: Redaction check
+      options:
+        - label: No PHI, no site network facts (AE titles, real IPs, ports, or hostnames), and no credentials appear above.
+          required: true

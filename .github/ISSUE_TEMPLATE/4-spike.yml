@@ -1,0 +1,63 @@
+name: Spike
+description: Timeboxed investigation that buys one answer. Closes with a finding, not a merge.
+type: Task
+labels: ["spike"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A spike answers **one** risky question with the crudest experiment that can answer it. Its code is throwaway;
+        its finding is not — the spike closes with the finding posted as a comment, and anything that settles design
+        moves to `docs/`.
+
+        Same writing rules as every issue: impersonal, roles not names, no site network facts, no PHI.
+        Full rules: [CONTRIBUTING → Writing issues and PRs](https://github.com/ramaai-dev/.github/blob/main/.github/CONTRIBUTING.md#writing-issues-and-prs).
+
+        เขียนภาษาไทยปน English technical terms ได้เลย — Thai with English technical terms is welcome.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: One sentence, answerable with yes / no / a number / a short list.
+      placeholder: Can Debug-level logging be enabled on an installed package without editing a file the package owns?
+    validations:
+      required: true
+
+  - type: textarea
+    id: unblocks
+    attributes:
+      label: Unblocks
+      description: The decision or issue waiting on the answer. Link it.
+      placeholder: "Decides whether #NNN ships a `--level` flag or a documented override file."
+    validations:
+      required: false
+
+  - type: input
+    id: timebox
+    attributes:
+      label: Timebox
+      description: Stop here and report what is known, answered or not.
+      placeholder: 1 day
+    validations:
+      required: false
+
+  - type: textarea
+    id: approach
+    attributes:
+      label: Approach
+      description: The crudest experiment that would answer the question.
+
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of scope
+      description: Adjacent questions this spike does not chase.
+
+  - type: checkboxes
+    id: redaction
+    attributes:
+      label: Redaction check
+      options:
+        - label: No PHI, no site network facts (AE titles, real IPs, ports, or hostnames), and no credentials appear above.
+          required: true
