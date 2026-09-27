@@ -1,0 +1,102 @@
+name: Bug
+description: Something behaves incorrectly — wrong output, a crash, a regression, or an install or deployment failure.
+type: Bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Write for a collaborator reading this cold in six months — not for whoever was present when the bug was found.
+
+        - **Evidence only.** Report what was observed. Where something is not known, write `Unknown` — do not guess.
+        - **Impersonal.** No "you" / "I", no names or initials — refer to roles (*maintainer*, *operator*, *reviewer*).
+        - **No site network facts, no PHI, no credentials.** A hospital's codename is fine here; its AE titles, addresses, ports, and hostnames are not — use `PACS_AET`, `192.0.2.10`.
+
+        Part of a larger outcome? Attach this issue as a sub-issue of its parent issue rather than restating the parent here.
+        Full rules: [CONTRIBUTING → Writing issues and PRs](https://github.com/ramaai-dev/.github/blob/main/.github/CONTRIBUTING.md#writing-issues-and-prs).
+
+        เขียนภาษาไทยปน English technical terms ได้เลย — Thai with English technical terms is welcome.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: One or two sentences — what is broken, where, and since which version if known.
+      placeholder: >-
+        A config section that sets only one of its two filters silently disables the other;
+        no records are processed and nothing is logged above Debug.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduce
+      description: Shortest deterministic path. Config snippets are welcome — redact secrets and site network facts.
+      placeholder: |
+        1. Install version 1.2.0 on a clean Ubuntu 24.04 VM.
+        2. Set the config key to ... and restart the service.
+        3. Send one test study and wait one polling interval.
+    validations:
+      required: false
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual
+      description: The observed result only, including any user-visible error.
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected
+      description: Name the reference — a design doc, the API contract, or a known-good version.
+      placeholder: Per `docs/design/…` the filter is fail-closed and logs the rejecting step. Last known good — 1.1.0.
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      value: |
+        - Version or commit:
+        - Install: package / container / dev
+        - OS and runtime:
+        - External systems involved (vendor and role — never an address or AE title):
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Redacted log lines or command output. Rendered as a code block — put screenshots under Analysis.
+      render: shell
+
+  - type: textarea
+    id: analysis
+    attributes:
+      label: Analysis
+      description: >-
+        Root cause and suggested fix, if known. Cite code as `path/to/file.ext:123`.
+        Write `Unknown` rather than speculating; say what was ruled out.
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Who is affected, how often, and the practical consequence in the field (silent data loss vs. cosmetic).
+      placeholder: |
+        Affected: any site that customises this config section
+        Frequency: always, from first restart
+        Consequence: no results are produced, and nothing alerts the operator
+
+  - type: checkboxes
+    id: redaction
+    attributes:
+      label: Redaction check
+      options:
+        - label: No PHI, no site network facts (AE titles, real IPs, ports, or hostnames), and no credentials appear above.
+          required: true

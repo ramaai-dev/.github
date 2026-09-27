@@ -1,0 +1,81 @@
+name: Feature
+description: A new capability, or a change to existing behaviour.
+type: Feature
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Write for a collaborator reading this cold in six months — not for whoever was present when the idea came up.
+
+        - **Impersonal.** No "you" / "I", no names or initials — refer to roles (*operator*, *radiologist*, *installer*, *integrator*).
+        - **No site network facts, no PHI, no credentials.** A hospital's codename is fine here; its AE titles, addresses, ports, and hostnames are not — use `PACS_AET`, `192.0.2.10`.
+        - **Short.** Reasoning that outlives the change belongs in `docs/design/` or an ADR — link it.
+
+        Part of a larger outcome? Attach this issue as a sub-issue of its parent issue rather than restating the parent here.
+        Full rules: [CONTRIBUTING → Writing issues and PRs](https://github.com/ramaai-dev/.github/blob/main/.github/CONTRIBUTING.md#writing-issues-and-prs).
+
+        เขียนภาษาไทยปน English technical terms ได้เลย — Thai with English technical terms is welcome.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What cannot be done today, for which role, and why current behaviour is insufficient.
+      placeholder: >-
+        An installer configuring a new site must answer the setup wizard interactively,
+        so a configuration cannot be reviewed beforehand or replayed after a reinstall.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Desired behaviour — CLI, config, API, or UI surface — as specifically as is known.
+      placeholder: "`setup --from <file>` reads the same keys the wizard writes, validates them, and exits non-zero with the offending key on error."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other approaches and why they are weaker. Delete if none.
+
+  - type: textarea
+    id: done_when
+    attributes:
+      label: Done when
+      description: Observable acceptance criteria. Say how each is verified — and against which real service, where one is needed.
+      value: |
+        - [ ]
+    validations:
+      required: false
+
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of scope
+      description: What this deliberately does not do.
+
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility
+      description: >-
+        Config keys, data schema, API contract, or the upgrade path of deployed sites affected?
+      placeholder: None — additive flag; existing behaviour is unchanged.
+
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Design docs, ADRs, related issues. One per line.
+
+  - type: checkboxes
+    id: redaction
+    attributes:
+      label: Redaction check
+      options:
+        - label: No PHI, no site network facts (AE titles, real IPs, ports, or hostnames), and no credentials appear above.
+          required: true
